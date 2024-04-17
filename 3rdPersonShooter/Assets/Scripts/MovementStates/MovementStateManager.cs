@@ -6,8 +6,8 @@ using UnityEngine.Rendering;
 public class MovementStateManager : MonoBehaviour
 {
     public float CurrentMoveSpeed;
-    public float walkSpeed = 2, walkSpeedBack = 1.3f;
-    public float runSpeed = 3, runSpeedBack = 2;
+    public float walkSpeed = 3, walkSpeedBack = 2.3f;
+    public float runSpeed = 4, runSpeedBack = 3;
     public float crouchSpeed = 1.3f, crouchSpeedBack = 1;
     [HideInInspector] public Vector3 dir;
     public float hzInput;

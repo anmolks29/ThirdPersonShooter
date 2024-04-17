@@ -88,7 +88,7 @@ public class SmgGun : MonoBehaviour
         if (Physics.Raycast(Camera.transform.position, Camera.transform.forward, out hit , shootingRange))
         {
             // Debug.Log(hit.transform.name + "Left mouse pressed");
-            impact = Instantiate(bulletImpact, hit.point, Quaternion.LookRotation(hit.normal));
+            //impact = Instantiate(bulletImpact, hit.point, Quaternion.LookRotation(hit.normal));
             Damage objectDamage = hit.transform.GetComponent<Damage>();
             EnemyMovement enemy = hit.transform.GetComponent<EnemyMovement>();
             EnemyDrone droneEnemy = hit.transform.GetComponent<EnemyDrone>();
@@ -96,13 +96,13 @@ public class SmgGun : MonoBehaviour
             {
                 objectDamage.HitDamage(giveDamage);
                 impact = Instantiate(bulletImpact, hit.point, Quaternion.LookRotation(hit.normal));
-                Destroy(impact, 0.5f);
+                Destroy(impact, 0.1f);
             }
             else if (enemy != null)
             {
                 enemy.enemyHitDamage(giveDamage);
                 impact = Instantiate(enemyHitImpact, hit.point, Quaternion.LookRotation(hit.normal));
-                Destroy(impact, 0.5f);
+                Destroy(impact, 0.1f);
             }
             else if (droneEnemy != null)
             {

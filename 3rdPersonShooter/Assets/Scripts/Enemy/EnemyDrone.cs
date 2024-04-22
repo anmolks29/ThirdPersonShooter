@@ -30,7 +30,9 @@ public class EnemyDrone : MonoBehaviour
     private float currentHealth;
     public float giveDamage = 5f;
 
-   //public ParticleSystem muzzleSpark;
+    public ParticleSystem muzzleSpark;
+    public ParticleSystem muzzleFlame;
+    public ParticleSystem destroyEffect;
     public Animator animator;
 
     private void Awake()
@@ -108,7 +110,8 @@ public class EnemyDrone : MonoBehaviour
         transform.LookAt(playerBody);
         if (!previouslyShoot)
         {
-            //muzzleSpark.Play();
+            muzzleSpark.Play();
+            muzzleFlame.Play();
             RaycastHit hit;
             if (Physics.Raycast(shootingRayCast.transform.position, shootingRayCast.transform.forward, out hit, shootingRadius))
             {
@@ -123,7 +126,7 @@ public class EnemyDrone : MonoBehaviour
                 animator.SetBool("AimRun", false);
 
                 animator.SetBool("Die", false);
-                Debug.Log("Drone Shooting Enemy");
+                
             }
             previouslyShoot = true;
             Invoke(nameof(ActiveShooting), timeBtwShoot);
@@ -152,11 +155,12 @@ public class EnemyDrone : MonoBehaviour
     private void enemyDie()
     {
         //enemyAgent.SetDestination(transform.position);
+        destroyEffect.Play();
         enemySpeed = 0;
         shootingRadius = 0;
         visionRadius = 0;
         playerInShootingRadious = false;
         playerInVisionRadious = false;
-        Object.Destroy(gameObject, 1.0f);
+        Object.Destroy(gameObject, 3.0f);
     }
 }

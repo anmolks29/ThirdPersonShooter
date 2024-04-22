@@ -9,7 +9,7 @@ public class AimStateManager : MonoBehaviour
     AimBaseState currentState;
     public HipFireState Hip = new HipFireState();
     public AimState Aim = new AimState();
-    float mouseSense = 1;
+    float mouseSense = 2;
     public float xAxis, yAxis;
     [SerializeField] Transform camFollowPos;
     [HideInInspector] public Animator anim;

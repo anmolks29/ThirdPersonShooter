@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+//using System.Numerics;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,6 +13,8 @@ public class EnemyMovement : MonoBehaviour
     public Camera shootingRayCast;
 
     public GameObject[] walkPoints;
+    public static EnemyMovement instance;
+
     int currentEnemyPosition =0;
     public float enemySpeed;
     float walkingPointRadious = 2;
@@ -28,6 +31,7 @@ public class EnemyMovement : MonoBehaviour
     private float currentHealth;
     public float giveDamage = 5f;
 
+    
     public ParticleSystem muzzleSpark;
     public Animator animator;
 
@@ -36,6 +40,10 @@ public class EnemyMovement : MonoBehaviour
         playerBody = GameObject.Find("Player").transform;
         enemyAgent = GetComponent<NavMeshAgent>();
         currentHealth = enemyHealth;
+    }
+    private void Start()
+    {
+        instance = this;
     }
     private void Update()
     {
@@ -55,6 +63,7 @@ public class EnemyMovement : MonoBehaviour
             ShootPlayer();
         }
 
+        
     }
 
     private void Guard()
@@ -78,7 +87,7 @@ public class EnemyMovement : MonoBehaviour
             animator.SetBool("Walk", false);
             animator.SetBool("AimRun", true);
             animator.SetBool("Shoot", false);
-            
+
             animator.SetBool("Die", false);
             visionRadius = 25;
             shootingRadius = 15;
@@ -131,10 +140,12 @@ public class EnemyMovement : MonoBehaviour
         currentHealth -= takedamage;
         if (currentHealth <= 0)
         {
+             
+
             animator.SetBool("Walk", false);
             animator.SetBool("AimRun", false);
             animator.SetBool("Shoot", false);
-            
+
             animator.SetBool("Die", true);
             enemyDie();
         }
@@ -149,5 +160,14 @@ public class EnemyMovement : MonoBehaviour
         playerInShootingRadious = false;
         playerInVisionRadious = false;
         Object.Destroy(gameObject, 5.0f);
+        
     }
+
+   
+
+   
+
+
+
+
 }

@@ -23,6 +23,7 @@ public class MovementStateManager : MonoBehaviour
 
     private float playerHealth = 120f;
     private float currentPlayerHealth;
+    public HealthBar healthBar;
 
     MovementBaseState currentState;
     public IdleState Idle = new IdleState();

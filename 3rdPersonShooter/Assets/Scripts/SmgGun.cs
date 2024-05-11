@@ -15,7 +15,7 @@ public class SmgGun : MonoBehaviour
     private float nextFire = 0f;
     public float fireRate = 15f;
     public Animator animator;
-
+    
     private int maxBullets = 30;
     private int mag = 15;
     private int bulletsInMag;
@@ -84,6 +84,7 @@ public class SmgGun : MonoBehaviour
         }
         bulletsInMag--;
         muzzleEffect.Play();
+       
         RaycastHit hit;
         if (Physics.Raycast(Camera.transform.position, Camera.transform.forward, out hit , shootingRange))
         {
@@ -92,6 +93,7 @@ public class SmgGun : MonoBehaviour
             Damage objectDamage = hit.transform.GetComponent<Damage>();
             EnemyMovement enemy = hit.transform.GetComponent<EnemyMovement>();
             EnemyDrone droneEnemy = hit.transform.GetComponent<EnemyDrone>();
+            KeyFunction key = hit.transform.GetComponent<KeyFunction>();
             if (objectDamage != null)
             {
                 objectDamage.HitDamage(giveDamage);
@@ -111,7 +113,12 @@ public class SmgGun : MonoBehaviour
                 Destroy(impact, 1f);
                 Debug.Log("Player Hit Drone");
             }
-            
+            else if (hit.collider.tag == "key")
+            {
+                Debug.Log("Key has detected raycast ");
+                KeyFunction.Instance.DetachFromParent();
+
+            }
         }
     }
 

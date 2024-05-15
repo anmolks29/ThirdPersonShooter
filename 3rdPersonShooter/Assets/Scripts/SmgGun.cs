@@ -24,7 +24,7 @@ public class SmgGun : MonoBehaviour
 
     public GameObject enemyHitImpact;
     public static SmgGun instance;
-    public PlayerMovement playerMovement;
+    public MovementStateManager playerMovement;
 
     private void Start()
     {
@@ -34,6 +34,7 @@ public class SmgGun : MonoBehaviour
     private void Awake()
     {
         bulletsInMag = maxBullets;
+        AmmoCount.Instance.UpdateAmmoMax(bulletsInMag);
     }
     void Update()
     {
@@ -41,35 +42,21 @@ public class SmgGun : MonoBehaviour
         {
             return;
         }
-        //StartReloding();
+
+        if (bulletsInMag<=0) 
+        {
+            StartReloding();
+            
+        }
+        
         if (Input.GetKey(KeyCode.Mouse0) && Time.time >= nextFire)
         {
-            /*animator.SetBool("IdleAiming", true);
-            animator.SetBool("Idle", false);*/
+            
             nextFire = Time.time + 1f/fireRate;
             Shoot();
-
-            //Debug.Log("Left mouse pressed");
+           
         }
-       /* else if (Input.GetKey(KeyCode.Mouse1) && Input.GetKey(KeyCode.Mouse0))
-        {
-            AimStateManager.instance.currentFov = AimStateManager.instance.adsFov;
-        }*/
-       /* else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.Mouse0))
-        {
-            animator.SetBool("Idle", false);
-            animator.SetBool("IdleAiming", false);
-            animator.SetBool("FireWalk", true);
-            animator.SetBool("Walk", true);
-            animator.SetBool("Reloding", false);
-        }
-        else
-        {
-            animator.SetBool("Fire", false);
-            animator.SetBool("Idle", true);
-            animator.SetBool("FireWalk", false);
-            animator.SetBool("Reloding", false);
-        }*/
+       
     }
 
     void Shoot()
@@ -78,11 +65,15 @@ public class SmgGun : MonoBehaviour
         {
             return;
         }
+        bulletsInMag--;
         if (bulletsInMag == 0)
         {
             mag--;
         }
-        bulletsInMag--;
+
+        AmmoCount.Instance.UpdateAmmoCurrent(bulletsInMag);
+        AmmoCount.Instance.UpdateMag(mag);
+        
         muzzleEffect.Play();
        
         RaycastHit hit;
@@ -122,30 +113,27 @@ public class SmgGun : MonoBehaviour
         }
     }
 
-   /* IEnumerator Relod()
+    IEnumerator Relod()
     {
-        playerMovement.playerSpeed = 0f;
-        playerMovement.sprintSpeed = 0f;
+        playerMovement.walkSpeed = 0f;
+        playerMovement.runSpeed = 0f;
         reloded = true;
-        animator.SetBool("Reloding", true );
-        //animator.SetBool("Idle", false );
+        animator.SetBool("Relod", true );
+        
         yield return new WaitForSeconds(relodingTime);
-        animator.SetBool("Reloding", false);
+        animator.SetBool("Relod", false);
         //animator.SetBool("Idle", true);
         bulletsInMag = maxBullets;
-        playerMovement.playerSpeed = 1.9f;
-        playerMovement.sprintSpeed = 3f;
+       
         reloded = false;
     }
 
     public void StartReloding()
     {
-        if (bulletsInMag <= 0)
-        {
-            StartCoroutine(Relod());
-            Debug.Log("Gun Reloded");
-        }
-    }*/
+
+       StartCoroutine(Relod());
+       Debug.Log("Gun Reloded");
+    } 
 
 
 }

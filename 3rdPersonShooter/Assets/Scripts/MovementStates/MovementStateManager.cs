@@ -31,6 +31,7 @@ public class MovementStateManager : MonoBehaviour
     public WalkingState Walk = new WalkingState();
     public RunningState Run = new RunningState();
 
+
     [HideInInspector] public Animator anim;
 
     // Start is called before the first frame update
@@ -40,6 +41,7 @@ public class MovementStateManager : MonoBehaviour
         controller = GetComponent<CharacterController>();
         SwitchState(Idle);
         currentPlayerHealth = playerHealth;
+        healthBar.SetHealthToMax(currentPlayerHealth);
     }
 
     // Update is called once per frame
@@ -50,6 +52,7 @@ public class MovementStateManager : MonoBehaviour
         currentState.UpdateState(this);
         anim.SetFloat("hzInput", hzInput);
         anim.SetFloat("vInput", vInput);
+        anim.SetBool("Relod", true);
     }
 
     public void SwitchState(MovementBaseState state)
@@ -97,6 +100,8 @@ public class MovementStateManager : MonoBehaviour
   public void PlayerHitDamage(float takeDamage)
     {
         currentPlayerHealth -= takeDamage;
+        healthBar.SetHealthToCurrent(currentPlayerHealth);
+
         if (currentPlayerHealth <= 0)
         {
             PlayerDie();

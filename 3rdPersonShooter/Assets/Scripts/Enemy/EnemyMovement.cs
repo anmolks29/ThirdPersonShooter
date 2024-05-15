@@ -30,7 +30,7 @@ public class EnemyMovement : MonoBehaviour
     private float enemyHealth = 120f;
     private float currentHealth;
     public float giveDamage = 5f;
-
+    public HealthBar healthBar;
     
     public ParticleSystem muzzleSpark;
     public Animator animator;
@@ -44,6 +44,7 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         instance = this;
+        healthBar.SetHealthToMax(currentHealth);
     }
     private void Update()
     {
@@ -138,6 +139,7 @@ public class EnemyMovement : MonoBehaviour
     public void enemyHitDamage(float takedamage)
     {
         currentHealth -= takedamage;
+        healthBar.SetHealthToCurrent(currentHealth);
         if (currentHealth <= 0)
         {
              

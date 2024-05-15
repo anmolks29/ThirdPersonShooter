@@ -9,12 +9,14 @@ public class HealthBar : MonoBehaviour
 
    public void SetHealthToMax(float health)
     {
-        healthSlider.value = health;
         healthSlider.maxValue = health;
+        healthSlider.value = health;
+        
     }
     
     public void SetHealthToCurrent(float health)
     {
         healthSlider.value = health;
+        
     }
 }

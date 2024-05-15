@@ -7,13 +7,22 @@ public class GeneratorSwitch : MonoBehaviour
     public Light greenLight;
     public Light redLight;
     private bool playerHasSwitch;
-
+    public GameObject switchPopup;
     // Update is called once per frame
     void Update()
     {
         if (playerHasSwitch && Input.GetKeyDown(KeyCode.O))
         {
             TurnGeneratorOff();
+        }
+
+        if(playerHasSwitch==true)
+        {
+            switchPopup.SetActive(true);
+        }
+        else
+        {
+            switchPopup.SetActive(false);
         }
     }
 
@@ -22,6 +31,15 @@ public class GeneratorSwitch : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerHasSwitch = true;
+            
+            Debug.Log("Generator is off");
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerHasSwitch = false;
             
             Debug.Log("Generator is off");
         }

@@ -8,15 +8,24 @@ public class GeneratorSwitch2 : MonoBehaviour
     public Light redLight;
     private bool playerHasSwitch;
     public GameObject switchPopup;
+    public bool generatorTurnedOff2;
 
-    // Update is called once per frame
+    public static GeneratorSwitch2 instance;
+
+
+    private void Start()
+    {
+        instance = this;
+        GeneratorSound2.instance.PlayGeneratorSound();
+    }
     void Update()
     {
         if (playerHasSwitch && Input.GetKeyDown(KeyCode.O))
         {
             TurnGeneratorOff();
+            generatorTurnedOff2 = true;
         }
-        if (playerHasSwitch == true)
+        if (playerHasSwitch == true && generatorTurnedOff2 == false)
         {
             switchPopup.SetActive(true);
         }
@@ -32,7 +41,7 @@ public class GeneratorSwitch2 : MonoBehaviour
         {
             playerHasSwitch = true;
             
-            Debug.Log("Generator is off");
+            
         }
     }
     private void OnTriggerExit(Collider other)
@@ -41,7 +50,7 @@ public class GeneratorSwitch2 : MonoBehaviour
         {
             playerHasSwitch = false;
 
-            Debug.Log("Generator is off");
+            
         }
     }
 
@@ -50,6 +59,7 @@ public class GeneratorSwitch2 : MonoBehaviour
         greenLight.enabled = false;
         redLight.intensity = 20;
         playerHasSwitch = false;
+        GeneratorSound2.instance.StopGeneratorSound();
         Debug.Log("Generator is off");
     }
 }

@@ -25,7 +25,13 @@ public class MovementStateManager : MonoBehaviour
     private float currentPlayerHealth;
     public HealthBar healthBar;
 
+    public ParticleSystem playerHitImpact;
+
+    public AudioClip playerHurtSound;
+    public AudioSource audioSource;
+
     MovementBaseState currentState;
+
     public IdleState Idle = new IdleState();
     public CrouchState Crouch = new CrouchState();
     public WalkingState Walk = new WalkingState();
@@ -52,7 +58,7 @@ public class MovementStateManager : MonoBehaviour
         currentState.UpdateState(this);
         anim.SetFloat("hzInput", hzInput);
         anim.SetFloat("vInput", vInput);
-        anim.SetBool("Relod", true);
+        
     }
 
     public void SwitchState(MovementBaseState state)
@@ -101,6 +107,8 @@ public class MovementStateManager : MonoBehaviour
     {
         currentPlayerHealth -= takeDamage;
         healthBar.SetHealthToCurrent(currentPlayerHealth);
+        audioSource.PlayOneShot(playerHurtSound);
+        playerHitImpact.Play();
 
         if (currentPlayerHealth <= 0)
         {

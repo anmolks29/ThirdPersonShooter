@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour
     public float timeBtwShoot = 3;
     bool shoot;
 
+    public AudioClip shotingSound;
+    public AudioSource audioSource;
     // Health
     private float maxHealth = 120f;
     private float currentHealth;
@@ -31,6 +33,7 @@ public class Enemy : MonoBehaviour
     public Animator animator;
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         playerBody = GameObject.Find("Player").transform;
         enemyAgent = GetComponent<NavMeshAgent>();
         currentHealth = maxHealth;

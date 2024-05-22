@@ -36,6 +36,9 @@ public class EnemyDrone : MonoBehaviour
     public ParticleSystem destroyEffect;
     public Animator animator;
 
+    public AudioClip shootingSound;
+    public AudioSource audioSource;
+
     private void Awake()
     {
         playerBody = GameObject.Find("Player").transform;
@@ -114,6 +117,7 @@ public class EnemyDrone : MonoBehaviour
         {
             muzzleSpark.Play();
             muzzleFlame.Play();
+            audioSource.PlayOneShot(shootingSound);
             RaycastHit hit;
             if (Physics.Raycast(shootingRayCast.transform.position, shootingRayCast.transform.forward, out hit, shootingRadius))
             {

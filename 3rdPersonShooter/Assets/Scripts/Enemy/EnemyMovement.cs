@@ -35,8 +35,12 @@ public class EnemyMovement : MonoBehaviour
     public ParticleSystem muzzleSpark;
     public Animator animator;
 
+    public AudioClip shootingSound;
+    public AudioSource audioSource;
+
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         playerBody = GameObject.Find("Player").transform;
         enemyAgent = GetComponent<NavMeshAgent>();
         currentHealth = enemyHealth;
@@ -111,6 +115,7 @@ public class EnemyMovement : MonoBehaviour
         if (!previouslyShoot)
         {
             muzzleSpark.Play();
+            audioSource.PlayOneShot(shootingSound);
             RaycastHit hit;
             if (Physics.Raycast(shootingRayCast.transform.position, shootingRayCast.transform.forward, out hit, shootingRadius))
             {

@@ -10,6 +10,8 @@ public class DoorOpen : MonoBehaviour
     private bool playerOnGate = false;
     public GameObject doorOpenPopup;
     public GameObject withoutKeyPopup;
+    public AudioSource audioSource;
+    public AudioClip doorOpeningSound;
 
     // Start is called before the first frame update
     void Start()
@@ -71,6 +73,7 @@ public class DoorOpen : MonoBehaviour
     {
         Debug.Log("Open the gate");
         animator.SetBool("DoorOpen", true);
+        audioSource.PlayOneShot(doorOpeningSound);
         playerOnGate = false;
     }
 }

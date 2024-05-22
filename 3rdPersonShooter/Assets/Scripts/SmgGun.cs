@@ -22,6 +22,12 @@ public class SmgGun : MonoBehaviour
     public float relodingTime = 1.3f;
     private bool reloded = false;
 
+    public AudioClip shootingSound;
+    public AudioClip relodingSound;
+    
+    public AudioSource audioSource;
+
+
     public GameObject enemyHitImpact;
     public static SmgGun instance;
     public MovementStateManager playerMovement;
@@ -69,12 +75,14 @@ public class SmgGun : MonoBehaviour
         if (bulletsInMag == 0)
         {
             mag--;
+            
         }
 
         AmmoCount.Instance.UpdateAmmoCurrent(bulletsInMag);
         AmmoCount.Instance.UpdateMag(mag);
         
         muzzleEffect.Play();
+        audioSource.PlayOneShot(shootingSound);
        
         RaycastHit hit;
         if (Physics.Raycast(Camera.transform.position, Camera.transform.forward, out hit , shootingRange))
@@ -115,16 +123,17 @@ public class SmgGun : MonoBehaviour
 
     IEnumerator Relod()
     {
-        playerMovement.walkSpeed = 0f;
-        playerMovement.runSpeed = 0f;
+       /* playerMovement.walkSpeed = 0f;
+        playerMovement.runSpeed = 0f;*/
         reloded = true;
         animator.SetBool("Relod", true );
         
+        audioSource.PlayOneShot(relodingSound);
         yield return new WaitForSeconds(relodingTime);
         animator.SetBool("Relod", false);
-        //animator.SetBool("Idle", true);
+        animator.SetBool("Idle", true);
         bulletsInMag = maxBullets;
-       
+        AmmoCount.Instance.UpdateAmmoCurrent(bulletsInMag);
         reloded = false;
     }
 

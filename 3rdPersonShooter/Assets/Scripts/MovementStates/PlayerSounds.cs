@@ -20,7 +20,10 @@ public class PlayerSounds : MonoBehaviour
     private void Walk()
     {
         AudioClip clip = GetRandomFootStep();
-        m_AudioSource.PlayOneShot(clip);
+        
+        m_AudioSource.PlayOneShot(clip, 0.2f);
+        
+        
     }
 
 }

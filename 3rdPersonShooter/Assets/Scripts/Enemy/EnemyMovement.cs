@@ -115,7 +115,7 @@ public class EnemyMovement : MonoBehaviour
         if (!previouslyShoot)
         {
             muzzleSpark.Play();
-            audioSource.PlayOneShot(shootingSound);
+            audioSource.PlayOneShot(shootingSound,2f);
             RaycastHit hit;
             if (Physics.Raycast(shootingRayCast.transform.position, shootingRayCast.transform.forward, out hit, shootingRadius))
             {

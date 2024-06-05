@@ -27,7 +27,7 @@ public class SmgGun : MonoBehaviour
     
     public AudioSource audioSource;
 
-
+    public GameObject ammoOut;
     public GameObject enemyHitImpact;
     public static SmgGun instance;
     public MovementStateManager playerMovement;
@@ -69,6 +69,8 @@ public class SmgGun : MonoBehaviour
     {
         if (mag == 0)
         {
+           
+            StartCoroutine(ShowAmmoOut());
             return;
         }
         bulletsInMag--;
@@ -133,7 +135,10 @@ public class SmgGun : MonoBehaviour
         animator.SetBool("Relod", false);
         animator.SetBool("Idle", true);
         bulletsInMag = maxBullets;
-        AmmoCount.Instance.UpdateAmmoCurrent(bulletsInMag);
+        if (mag != 0)
+        {
+            AmmoCount.Instance.UpdateAmmoCurrent(bulletsInMag);
+        }
         reloded = false;
     }
 
@@ -144,6 +149,12 @@ public class SmgGun : MonoBehaviour
        Debug.Log("Gun Reloded");
     } 
 
+    IEnumerator ShowAmmoOut()
+    {
+        ammoOut.SetActive(true);
+        yield return new WaitForSeconds(2);
+        ammoOut.SetActive(false);
+    }
 
 }
 

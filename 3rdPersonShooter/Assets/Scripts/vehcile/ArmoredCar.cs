@@ -24,6 +24,7 @@ public class ArmoredCar : MonoBehaviour
         {
 
             reachedGetInsideCar = true;
+            MissionProgressBar.instance.ActiveBar5();
         }
         else
         {

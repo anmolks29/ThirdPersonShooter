@@ -8,15 +8,17 @@ public class DoorOpen : MonoBehaviour
 {
     public Animator animator;
     private bool playerOnGate = false;
+    public bool doorOpened = false;
     public GameObject doorOpenPopup;
     public GameObject withoutKeyPopup;
     public AudioSource audioSource;
     public AudioClip doorOpeningSound;
 
+    public static DoorOpen instance;
     // Start is called before the first frame update
     void Start()
     {
-        
+        instance = this;   
     }
 
     // Update is called once per frame
@@ -26,7 +28,9 @@ public class DoorOpen : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.O) && playerOnGate && KeyFunction.Instance.keyHasCollected == true)
         {
             OpenGate();
+            MissionProgressBar.instance.ActiveBar2();
             KeyFunction.Instance.keyHasCollected = false;
+            doorOpened = true;
         }
         if (playerOnGate && KeyFunction.Instance.keyHasCollected == false)
         {

@@ -32,6 +32,8 @@ public class MovementStateManager : MonoBehaviour
 
     MovementBaseState currentState;
 
+    public GameObject deathCamera;
+    public GameObject endGameScene;
     public IdleState Idle = new IdleState();
     public CrouchState Crouch = new CrouchState();
     public WalkingState Walk = new WalkingState();
@@ -107,7 +109,7 @@ public class MovementStateManager : MonoBehaviour
     {
         currentPlayerHealth -= takeDamage;
         healthBar.SetHealthToCurrent(currentPlayerHealth);
-        audioSource.PlayOneShot(playerHurtSound);
+        audioSource.PlayOneShot(playerHurtSound, 0.2f);
         playerHitImpact.Play();
 
         if (currentPlayerHealth <= 0)
@@ -118,6 +120,9 @@ public class MovementStateManager : MonoBehaviour
 
     private void PlayerDie()
     {
-        Object.Destroy(gameObject, 2.0f);
+        endGameScene.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        deathCamera.SetActive(true);
+        Object.Destroy(gameObject, 1.0f);
     }
 }

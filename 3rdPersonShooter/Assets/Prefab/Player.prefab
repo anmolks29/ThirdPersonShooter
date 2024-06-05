@@ -5615,6 +5615,7 @@ Transform:
   - {fileID: 7341358390206017018}
   - {fileID: 3421663829592702127}
   - {fileID: 5455365383578519668}
+  - {fileID: 9208168945808566771}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6533043597607693768
@@ -5712,6 +5713,8 @@ MonoBehaviour:
   playerHitImpact: {fileID: 5455365383592676660}
   playerHurtSound: {fileID: 8300000, guid: 4694f6dcdc85360449c8ef8d55aae9e1, type: 3}
   audioSource: {fileID: 2128711591093636393}
+  deathCamera: {fileID: 0}
+  endGameScene: {fileID: 0}
   anim: {fileID: 0}
 --- !u!114 &6201457652854218341
 MonoBehaviour:
@@ -5792,7 +5795,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 59.1
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -7436,6 +7439,103 @@ Transform:
   - {fileID: 8860784314649103117}
   m_Father: {fileID: 2645585655663961880}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7174261529798565363
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9208168945808566771}
+  - component: {fileID: 7279645678841806138}
+  - component: {fileID: 5336063704203531625}
+  m_Layer: 3
+  m_Name: AmmoOut
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &9208168945808566771
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7174261529798565363}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.83, y: 4.22, z: 7.31}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2469061025802880711}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &7279645678841806138
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7174261529798565363}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 7cb2912222469634ba17a77055919ea8, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!102 &5336063704203531625
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7174261529798565363}
+  m_Text: Out of the ammo
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 0
+  m_Alignment: 0
+  m_TabSize: 4
+  m_FontSize: 0
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 12800000, guid: 7cb2912222469634ba17a77055919ea8, type: 3}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
 --- !u!1 &7211009194303571343
 GameObject:
   m_ObjectHideFlags: 0
@@ -7674,6 +7774,7 @@ MonoBehaviour:
   shootingSound: {fileID: 8300000, guid: b70164d279b029543897e94cca86cfc7, type: 3}
   relodingSound: {fileID: 8300000, guid: 802275865a7950a4a9ed2935e2110036, type: 3}
   audioSource: {fileID: 1694991952847785673}
+  ammoOut: {fileID: 7174261529798565363}
   enemyHitImpact: {fileID: 3198374318725026878, guid: abdf22a630111374ea5030afd690b13b, type: 3}
   playerMovement: {fileID: 8783033617752792806}
 --- !u!82 &1694991952847785673
@@ -7697,7 +7798,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 91.9
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

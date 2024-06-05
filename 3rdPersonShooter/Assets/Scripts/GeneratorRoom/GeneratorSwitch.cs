@@ -24,6 +24,7 @@ public class GeneratorSwitch : MonoBehaviour
         {
             TurnGeneratorOff();
             generatorTurnedOff1 = true;
+            MissionProgressBar.instance.ActiveBar3();
         }
 
         if(playerHasSwitch==true && generatorTurnedOff1 == false)

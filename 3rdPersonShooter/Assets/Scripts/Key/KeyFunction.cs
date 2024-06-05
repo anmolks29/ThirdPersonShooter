@@ -14,6 +14,10 @@ public class KeyFunction : MonoBehaviour
         Instance = this;
     }
 
+    private void Update()
+    {
+        
+    }
     public void DetachFromParent()
     {
         transform.parent = null;
@@ -27,6 +31,8 @@ public class KeyFunction : MonoBehaviour
         {
             keyHasCollected = true;
             Destroy(gameObject);
+            MissionProgressBar.instance.ActiveBar1();
+            
             Debug.Log("Key has collected");
         }
     }

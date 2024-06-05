@@ -79,7 +79,8 @@ public class TimeBomb : MonoBehaviour
                 
                 timeRemainingPopup.SetActive(false);
                 PlayExplosion();
-                
+                MissionProgressBar.instance.ActiveBar4();
+
             }
         }
 

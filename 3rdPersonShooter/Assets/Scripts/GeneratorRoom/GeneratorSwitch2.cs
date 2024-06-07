@@ -20,7 +20,7 @@ public class GeneratorSwitch2 : MonoBehaviour
     }
     void Update()
     {
-        if (playerHasSwitch && Input.GetKeyDown(KeyCode.O))
+        if (playerHasSwitch && Input.GetKeyDown(KeyCode.I))
         {
             TurnGeneratorOff();
             generatorTurnedOff2 = true;

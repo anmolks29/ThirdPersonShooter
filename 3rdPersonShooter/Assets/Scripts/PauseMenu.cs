@@ -10,7 +10,10 @@ public class PauseMenu : MonoBehaviour
     public GameObject endGameScene;
     public GameObject crossHair;
     public GameObject missions;
+    public GameObject volumeScene;
+    public GameObject quitScene;
     public static bool gameIsPaused = false;
+    public AudioSource clickSound;
 
     public static PauseMenu instance;
 
@@ -24,6 +27,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            
             if (gameIsPaused)
             {
                 ResumeGame();
@@ -43,10 +47,13 @@ public class PauseMenu : MonoBehaviour
     {
         pauseScene.SetActive(false);
         missions.SetActive(false);
+        volumeScene.SetActive(false);
+        quitScene.SetActive(false);
         Time.timeScale = 1.0f;
         Cursor.lockState = CursorLockMode.Locked;
         gameIsPaused = false;
         crossHair.SetActive(true);
+        clickSound.Play();
     }
 
     public void Restart()
@@ -74,6 +81,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         gameIsPaused = true;
         crossHair.SetActive(false);
+        clickSound.Play();
     }
 
 

@@ -21,7 +21,7 @@ public class EnemySounds : MonoBehaviour
     {
         AudioClip clip = GetRandomFootStep();
         
-        m_AudioSource.PlayOneShot(clip, 0.1f);
+        m_AudioSource.PlayOneShot(clip, 0.05f);
         
         
     }

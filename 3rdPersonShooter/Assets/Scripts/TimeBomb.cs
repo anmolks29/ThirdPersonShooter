@@ -41,7 +41,7 @@ public class TimeBomb : MonoBehaviour
             timeBombPopup.SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.P) && GeneratorSwitch.instance.generatorTurnedOff1 == true && GeneratorSwitch2.instance.generatorTurnedOff2 == true)
+        if (Input.GetKeyDown(KeyCode.I) && GeneratorSwitch.instance.generatorTurnedOff1 == true && GeneratorSwitch2.instance.generatorTurnedOff2 == true)
         {
             timeBomb.SetActive(true);
             ShowTimeBombPopup = false;
